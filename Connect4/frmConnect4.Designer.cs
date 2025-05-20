@@ -1,6 +1,6 @@
 ﻿namespace Connect4
 {
-    partial class Form1
+    partial class frmConnect4
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frmConnect4
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(504, 411);
+            this.Name = "frmConnect4";
+            this.Text = "Connect 4";
+            this.Load += new System.EventHandler(this.FrmConnect4_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

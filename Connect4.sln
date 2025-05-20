@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connect4", "Connect4\Connect4.csproj", "{A732EFA1-F532-4942-B599-8B8248A5F67D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connect4.Entities", "Connect4.Entities\Connect4.Entities.csproj", "{6FBB197A-EF28-4008-B404-A426F709D2B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A732EFA1-F532-4942-B599-8B8248A5F67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A732EFA1-F532-4942-B599-8B8248A5F67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A732EFA1-F532-4942-B599-8B8248A5F67D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBB197A-EF28-4008-B404-A426F709D2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FBB197A-EF28-4008-B404-A426F709D2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FBB197A-EF28-4008-B404-A426F709D2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBB197A-EF28-4008-B404-A426F709D2B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
