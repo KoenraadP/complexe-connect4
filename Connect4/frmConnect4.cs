@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Connect4.Entities;
+using Connect4.Bll;
+using System.Drawing;
 
 namespace Connect4
 {
@@ -22,7 +17,15 @@ namespace Connect4
         private void FrmConnect4_Load(object sender, EventArgs e)
         {
             // token maken
-            Token
+            Token token = new Token();
+            // token een positie geven
+            // we zetten hiermee de linker boven hoek van ons token op een specifieke plaats
+            // voorbeeld: onderaan rechts
+            token.Location = new Point(ClientSize.Width 
+                - token.Width, ClientSize.Height - token.Height); // Point zit in System.Drawing
+            // token toevoegen aan de form
+            // Controls = alle mogelijke elementen die op de form staan
+            Controls.Add(token);
         }
     }
 }
