@@ -75,7 +75,13 @@ namespace Connect4
             int col = Convert.ToInt32(colNumber);
 
             // token droppen in de kolom
-            Game.DropToken(col);
+            int row = Game.DropToken(col);
+
+            // controleren of er iemand gewonnen is
+            if (Game.CheckWinner(col, row))
+            {
+                MessageBox.Show($"Speler {Game.CurrentPlayer} heeft gewonnen!");
+            };
 
             // speler wisselen
             Game.ChangePlayer();

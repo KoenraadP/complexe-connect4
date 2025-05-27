@@ -84,7 +84,7 @@ namespace Connect4.Bll
         }
 
         // methode om een token te droppen in een bepaalde kolom
-        public void DropToken(int col)
+        public int DropToken(int col)
         {
             // starten bij de laatste rij van de huidige kolom en 'aftellen'
             // zodat we telkens een rij hoger gaan om te controleren waar het 
@@ -98,9 +98,12 @@ namespace Connect4.Bll
                     // op basis van de huidige speler
                     Grid[row, col] = CurrentPlayer; 
                     DrawTokens(); // hertekenen van de tokens
-                    break; // we stoppen met zoeken naar een lege plaats in deze kolom
+                    // huidige rij als return om te kunnen gebruiken bij CheckWinner
+                    return row;
                 }
             }
+
+            return -1;
         }
 
         // methode om van rood naar geel te wisselen
@@ -115,6 +118,40 @@ namespace Connect4.Bll
             {
                 CurrentPlayer = FieldState.Red;
             }
+        }
+
+        public bool CheckWinner(int col, int row)
+        {
+            // controleren of we helemaal bovenaan zitten
+            if (row == -1)
+            {
+                MessageBox.Show("Kolom vol!");
+                return false;
+            }
+
+            // teller om bij te houden hoeveel tokens we al gevonden hebben van de huidige speler
+            int counter = 0;
+
+            // verticaal controleren
+            for (int r = row; r < Grid.GetLength(0); r++)
+            {
+                // als het volgende vakje naar onder ook van de huidige speler is...
+                if (Grid[r, col] == CurrentPlayer)
+                {
+                    counter++;
+                    // als we aan vier tokens zitten hebben we gewonnen
+                    if (counter == 4)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+            return false;
         }
     }
 }
