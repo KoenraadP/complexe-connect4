@@ -2,7 +2,6 @@
 using Connect4.Entities;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Connect4.Bll
 {
@@ -22,7 +21,7 @@ namespace Connect4.Bll
         // koppeling met form
         public Form Form { get; set; }
         // bijhouden wie aan de beurt is
-        public FieldState CurrentPlayer { get; set; } = FieldState.Red; // standaard rood
+        public FieldState CurrentPlayer { get; set; }
 
         // constructor
         // we geven bij het aanmaken van een Game
@@ -33,6 +32,23 @@ namespace Connect4.Bll
             // 6 rijen en 7 kolommen
             Grid = new FieldState[6, 7];
             Form = form;
+            // als er al tokens zijn van een vorige spel, deze verwijderen
+            ClearTokens();
+            // standaard speler is rood
+            CurrentPlayer = FieldState.Red;
+        }
+
+        public void ClearTokens()
+        {
+            foreach (Control c in Form.Controls)
+            {
+                // controleren of de control een Token is
+                if (c is Token)
+                {
+                    // verwijderen van de control
+                    Form.Controls.Remove(c);
+                }
+            }
         }
 
         // grijze / rode / gele tokens 'tekenen' op de form
@@ -96,7 +112,7 @@ namespace Connect4.Bll
                 {
                     // we plaatsen een rode of gele token
                     // op basis van de huidige speler
-                    Grid[row, col] = CurrentPlayer; 
+                    Grid[row, col] = CurrentPlayer;
                     DrawTokens(); // hertekenen van de tokens
                     // huidige rij als return om te kunnen gebruiken bij CheckWinner
                     return row;
@@ -150,7 +166,31 @@ namespace Connect4.Bll
                     return false;
                 }
             }
-            
+
+            return false;
+        }
+
+        // alternatieve manier om winnaar te controleren
+        public bool CheckWinner()
+        {
+            // vertical v1
+
+            // enkel de eerste drie rijen zijn hier van tel om naar onder te controleren
+            for (int row = 0; row <= 2; row++)
+            {
+                // wel iedere kolom controleren
+                for (int col = 0; col < Grid.GetLength(1); col++)
+                {
+                    if (Grid[row, col] == CurrentPlayer &&
+                        Grid[row + 1, col] == CurrentPlayer &&
+                        Grid[row + 2, col] == CurrentPlayer &&
+                        Grid[row + 3, col] == CurrentPlayer)
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
     }

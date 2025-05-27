@@ -69,7 +69,7 @@ namespace Connect4
             string buttonName = ((Button)sender).Name;
             // buttonName bestaat uit 7 letters (btnCol0), dus de length is 7
             // met substring wil ik vanaf karakter 6 (de 7de letter) tot aan het einde van de string
-            string colNumber = buttonName.Substring(buttonName.Length-1);
+            string colNumber = buttonName.Substring(buttonName.Length - 1);
 
             // kolom nummer omzetten naar int
             int col = Convert.ToInt32(colNumber);
@@ -80,11 +80,29 @@ namespace Connect4
             // controleren of er iemand gewonnen is
             if (Game.CheckWinner(col, row))
             {
-                MessageBox.Show($"Speler {Game.CurrentPlayer} heeft gewonnen!");
-            };
-
-            // speler wisselen
-            Game.ChangePlayer();
+                // melden dat er een winnaar is
+                // en vragen of er opnieuw moet gespeeld worden
+                // twee buttons: opnieuw en annuleren (retrycancel)
+                // chosenButton bewaart de keuze van de knop (retry of cancel)
+                DialogResult chosenButton = MessageBox.Show($"Speler {Game.CurrentPlayer} heeft gewonnen!",
+                    "Gewonnen!", MessageBoxButtons.RetryCancel);
+                // als de speler opnieuw wil spelen
+                if (chosenButton == DialogResult.Retry)
+                {
+                    // spel opnieuw starten
+                    StartGame();
+                }
+                else
+                {
+                    // applicatie stoppen
+                    Close();
+                }
+            }
+            else
+            {
+                // speler wisselen als er nog geen winnaar is
+                Game.ChangePlayer();
+            }
         }
     }
 }
