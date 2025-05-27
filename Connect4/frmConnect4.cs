@@ -67,11 +67,15 @@ namespace Connect4
             // maar staat standaard als 'object' ingesteld
             // dus moeten we casten naar Button
             string buttonName = ((Button)sender).Name;
-            // buttonName bestaat uit 7 letters, dus de length is 7
+            // buttonName bestaat uit 7 letters (btnCol0), dus de length is 7
             // met substring wil ik vanaf karakter 6 (de 7de letter) tot aan het einde van de string
             string colNumber = buttonName.Substring(buttonName.Length-1);
 
-            MessageBox.Show($"Je hebt op kolom {colNumber} geklikt!");
+            // kolom nummer omzetten naar int
+            int col = Convert.ToInt32(colNumber);
+
+            // token droppen in de kolom
+            Game.DropToken(col);
         }
     }
 }
