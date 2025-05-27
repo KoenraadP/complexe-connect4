@@ -76,6 +76,9 @@ namespace Connect4
 
             // token droppen in de kolom
             Game.DropToken(col);
+
+            // speler wisselen
+            Game.ChangePlayer();
         }
     }
 }
